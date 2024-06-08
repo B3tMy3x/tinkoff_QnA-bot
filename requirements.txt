@@ -1,0 +1,15 @@
+Flask
+Flask-Bcrypt
+Flask-SQLAlchemy
+Flask-WTF
+email-validator
+flask-script
+flask-migrate
+flask-login
+python-dotenv
+torch
+transformers
+pandas
+scikit-learn
+fasttext
+psycopg2-binary

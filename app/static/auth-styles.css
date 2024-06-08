@@ -1,0 +1,181 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    background: linear-gradient(45deg, #333333, #FFDD2D);
+    background-size: 2000% 2000%;
+    animation: bg-gradient-animation 10s ease-in-out infinite;
+    margin: 0;
+    text-align: center;
+}
+
+@keyframes bg-gradient-animation {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+.navbar-left .logo {
+    height: 61px;
+    width: 220px;
+    left: -16px;
+    position: relative;
+    background-image: url(https://acdn.tinkoff.ru/static/pages/files/3941f597-9c69-4090-9aae-79300a1c6e8a.svg)
+}
+
+body.dark-theme .navbar-left .logo {
+    height: 61px;
+    width: 220px;
+    left: -16px;
+    position: relative;
+    background-image: url(https://svgshare.com/i/16TJ.svg)
+}
+
+.login {
+    display: block;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.close-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(246, 247, 248, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.close-button a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.close-button:hover {
+    background-color: #333;
+    transition: 0.5s;
+}
+
+.form-input {
+    font-weight: 900;
+    background-origin: padding-box;
+    background-clip: border-box;
+    color: black;
+    background-color: #fff;
+    height: 32px;
+    padding: 4px 10px;
+    border: 3px solid #333;
+    border-radius: 15px;
+    display: flex;
+    margin: auto;
+    font-size: 15px;
+    min-width: 370px;
+}
+
+.logo {
+    height: 91.5px;
+    width: 330px;
+    position: relative;
+    background-image: url(https://acdn.tinkoff.ru/static/pages/files/3941f597-9c69-4090-9aae-79300a1c6e8a.svg);
+    margin: auto;
+}
+
+.register-window {
+    width: 400px;
+    margin: auto;
+    background: rgb(246,247,248, .6);
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 12%;
+    padding-top: 0;
+    padding-bottom: 25px;
+}
+
+.login-button {
+    font-weight: 900;
+    background-origin: padding-box;
+    background-clip: border-box;
+    color: #333;
+    background-color: #fff;
+    padding: 10px 10px;
+    border: 3px solid #333;
+    border-radius: 15px;
+    display: flex;
+    margin: auto;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.login-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+.login-button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.login-button:hover span {
+    padding-right: 25px;
+}
+
+.login-button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.yet {
+    font-size: 20px;
+    margin-top: 5px;
+    color: #fff;
+    text-decoration: none;
+    text-decoration: underline;
+    font-weight: 900;
+}
+
+#loading {
+    animation-duration: 3s;
+    animation-name: load;
+}
+
+@keyframes load{
+    from {
+        opacity: 0;
+}
+    20% {
+        opacity: 0;
+}
+    to {
+        opacity: 1;
+}
+}

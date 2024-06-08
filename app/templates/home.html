@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Q&A-бот{% endblock %}
+{% block content %}
+<div class="main-body">
+    <a href="/telegram"><div class="card" id="telegram">
+        <img src="{{ url_for('static', filename='image1.png') }}" alt="Телеграм бот">
+        <div class="card-content">
+            <h2>Телеграм бот</h2>
+            <p>Генеративный ассистент в Телеграме, предоставляющий круглосуточную помощь предпринимателям по типовым вопросам бизнеса.</p>
+            <button>Открыть Телеграм</button>
+        </div>
+    </div></a>
+    <a href="/chat"><div class="card" id="chat">
+        <img src="{{ url_for('static', filename='image2.png') }}" alt="Бот на сайте">
+        <div class="card-content">
+            <h2>Бот на сайте</h2>
+            <p>Веб-бот, интегрированный на сайт, для мгновенного ответа на вопросы пользователей о регистрации, кредитах, бухгалтерии и других бизнес-аспектах.</p>
+            <button>Перейти к боту</button>
+        </div>
+    </div></a>
+    <a href="/api"><div class="card" id="api">
+        <img src="{{ url_for('static', filename='image3.png') }}" alt="Бот API">
+        <div class="card-content">
+            <h2>Бот API</h2>
+            <p>API для интеграции генеративного ассистента в различные платформы, обеспечивающее доступ к базе знаний и оперативную поддержку бизнеса.</p>
+            <button>Читать документацию</button>
+        </div>
+    </div></a>
+</div>
+{% endblock %}

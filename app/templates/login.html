@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth-styles.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="shortcut icon" sizes="32x32" href="https://acdn.tinkoff.ru/params/common_front/resourses/icons/favicon-32x32.png">
+</head>
+<body>
+    <div id="loading">
+    <div class="close-button">
+        <a href="/home">✖</a>
+    </div>
+    <div class="register-window" style="margin-top: 15%;">
+    <div class="login">
+        <div class="logo"></div>
+        <form method="post" action="">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.email(class="form-input", placeholder="Email", size=32) }}<br>
+                {% for error in form.email.errors %}
+                    <span class="error">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.password(class="form-input", placeholder="Пароль", size=32) }}<br>
+                {% for error in form.password.errors %}
+                    <span class="error">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <div>
+                <button class="login-button" id="submit" name="submit" type="submit"><span>Зарегистрироваться</span></button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <a href="/register" class="yet"><span>Нет аккаунта? Зарегестрироваться</span></a>
+    </div>
+</body>
+</html>

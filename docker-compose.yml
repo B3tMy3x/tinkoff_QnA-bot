@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 54321
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"

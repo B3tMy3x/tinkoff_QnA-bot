@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<h1 class="card-title">Профиль</h1>
+<p>Имя пользователя: {{ current_user.username }}</p>
+<h2>Загруженные файлы:</h2>
+{% for file in files %}
+    <div class="file-section">
+        <h3>{{ file.filename }}</h3>
+        <table class="file-table">
+            {% for row in file.data %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+      <li>
+        <button onclick="deleteFile({{ file.id }})">Удалить</button>
+      </li>
+    </div>
+{% endfor %}
+  <script>
+    function deleteFile(fileId) {
+      fetch('/delete_file/' + fileId, {
+        method: 'POST'
+      }).then(response => {
+        if (response.ok) {
+          window.location.reload();
+        } else {
+          alert('Не удалось удалить файл');
+        }
+      });
+    }
+  </script>
+{% endblock %}

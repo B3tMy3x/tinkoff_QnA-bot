@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Чат{% endblock %}
+{% block content %}
+<style>
+</style>
+<div class="chat">
+    <div id="chat-box">
+        <div id="messages"></div>
+        <div id="input-box">
+            <input type="text" id="message-input" placeholder="Ваш вопрос">
+            <button id="send-button" class="telegram-send-button" onclick="sendMessage()">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path fill="none" d="M0 0h24v24H0z"/>
+                    <path d="M2 21l4-4h14c1.1 0 2-0.9 2-2V5c0-1.1-0.9-2-2-2H6c-1.1 0-2 0.9-2 2v14zM6 9l6 5 4-4" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('send-button').addEventListener('click', sendMessage);
+        document.getElementById('message-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const input = document.getElementById('message-input');
+            const message = input.value;
+            if (!message) return;
+            input.value = '';
+
+            // Display user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.textContent = message;
+            document.getElementById('messages').appendChild(userMessage);
+
+            // Scroll to the bottom
+            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+
+            // Display bot typing indicator
+            const botTyping = document.createElement('div');
+            botTyping.className = 'message bot';
+
+            const avatar = document.createElement('img');
+            avatar.src = 'https://acdn.tinkoff.ru/static/pages/files/d39e9d26-fd5e-4574-9ad3-c3f2fc102598.png';
+            avatar.className = 'avatar';
+            botTyping.appendChild(avatar);
+
+            const typingIndicator = document.createElement('l-dot-wave');
+            typingIndicator.setAttribute('size', '30');
+            typingIndicator.setAttribute('speed', '1');
+            typingIndicator.setAttribute('color', 'black');
+            botTyping.appendChild(typingIndicator);
+
+            document.getElementById('messages').appendChild(botTyping);
+
+            // Scroll to the bottom
+            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+
+            // Send message to bot and handle response
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Ensure the typing indicator is displayed for at least 0.5 seconds
+                setTimeout(() => {
+                    // Remove typing indicator
+                    document.getElementById('messages').removeChild(botTyping);
+
+                    // Display bot response
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'message bot';
+
+                    const avatar = document.createElement('img');
+                    avatar.src = 'https://acdn.tinkoff.ru/static/pages/files/d39e9d26-fd5e-4574-9ad3-c3f2fc102598.png';
+                    avatar.className = 'avatar';
+                    botMessage.appendChild(avatar);
+
+                    const text = document.createElement('span');
+                    text.textContent = data.response;
+                    botMessage.appendChild(text);
+
+                    document.getElementById('messages').appendChild(botMessage);
+
+                    // Scroll to the bottom
+                    document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+                }, 500);
+            });
+        }
+    </script>
+</div>
+{% endblock %}
